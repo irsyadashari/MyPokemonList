@@ -98,8 +98,8 @@ final class PokemonDetailVC: UIViewController {
             textField.text = pokemonDetail.name
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        let submitAction = UIAlertAction(title: "Submit", style: .default) { (action) in
+        let releaseAction = UIAlertAction(title: "Release", style: .cancel, handler: nil)
+        let collectAction = UIAlertAction(title: "Collect", style: .default) { (action) in
             if let textField = alertController.textFields?.first, let text = textField.text {
                 self.presenter?.saveToDB(nickName: text) { isSuccess in
                     if isSuccess {
@@ -111,10 +111,10 @@ final class PokemonDetailVC: UIViewController {
             }
         }
         
-        alertController.addAction(cancelAction)
-        alertController.addAction(submitAction)
+        alertController.addAction(releaseAction)
+        alertController.addAction(collectAction)
         
-        present(alertController, animated: true, completion: nil)
+        present(alertController, animated: false, completion: nil)
     }
     
     private func handlePokemonEscaped() {

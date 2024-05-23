@@ -23,23 +23,25 @@ extension UIImageView {
         urlString: String,
         placeholder: UIImage? = nil
     ) -> URLSessionDataTask? {
-        self.image = nil
-        
-        let key = NSString(string: urlString)
-        
-        if let cachedImage = imageCache.object(forKey: key) {
-            self.image = cachedImage
-            return nil
+        DispatchQueue.main.async {
+            self.image = nil
+            let key = NSString(string: urlString)
+            
+            if let cachedImage = imageCache.object(forKey: key) {
+                self.image = cachedImage
+            }
         }
         
         guard let url = URL(string: urlString) else {
             return nil
         }
         
-        if let placeholder = placeholder {
-            self.image = placeholder
-        } else {
-            self.image = UIImage(named: "loading-placeholder")
+        DispatchQueue.main.async {
+            if let placeholder = placeholder {
+                self.image = placeholder
+            } else {
+                self.image = UIImage(named: "loading-placeholder")
+            }
         }
         
         let task = URLSession.shared.dataTask(with: url) { data, _ , _ in

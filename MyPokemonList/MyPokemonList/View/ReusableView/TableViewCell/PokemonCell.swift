@@ -40,6 +40,7 @@ final class PokemonCell: UITableViewCell {
     
     func configure(item: PokemonItem) {
         nameLabel.text = item.pokemonName.capitalized
+        iconView.image = UIImage(named: "loading-placeholder")
         loadImage(pokemonName: item.pokemonName)
     }
     
