@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="false" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22757" systemVersion="23E214" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="PokemonDetailEntity" representedClassName=".PokemonDetailEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="abilities" optional="YES" attributeType="String" customClassName=".PokemonAbilitiesEntity"/>
+        <attribute name="backURLImage" optional="YES" attributeType="String"/>
+        <attribute name="frontURLImage" optional="YES" attributeType="String" customClassName=".PokemonImageURLEntity"/>
+        <attribute name="moves" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="nickName" optional="YES" attributeType="String"/>
+        <attribute name="slot" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="types" optional="YES" attributeType="String"/>
+    </entity>
 </model>

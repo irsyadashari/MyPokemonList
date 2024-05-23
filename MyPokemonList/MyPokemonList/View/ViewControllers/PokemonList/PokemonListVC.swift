@@ -23,28 +23,25 @@ final class PokemonListVC: UIViewController {
         view.backgroundColor = .white
         title = "Pokemon Lists"
         navigationController?.navigationBar.prefersLargeTitles = true
+        
         setupTableView()
     }
     
     private func setupTableView() {
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = UITableView.automaticDimension
-        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
-        tableView.delegate = self
         tableView.showsVerticalScrollIndicator = false
         tableView.fillSuperView(to: view, distance: 16)
-        
-        registerCells()
-    }
-    
-    private func registerCells() {
         tableView.register(PokemonCell.self, forCellReuseIdentifier: PokemonCell.reuseIdentifier)
     }
     
-    private func goToDetailPage() {
+    func goToDetailPage(detail: PokemonDetail) {
         let detailPage = PokemonDetailVC()
-        detailPage.view.backgroundColor = .red
+        let presenter = PokemonDetailPresenterImpl()
+        presenter.pokemonDetail = detail
+        detailPage.presenter = presenter
         detailPage.title = "Detail Page"
         navigationController?.pushViewController(detailPage, animated: true)
     }
@@ -53,8 +50,13 @@ final class PokemonListVC: UIViewController {
 extension PokemonListVC: PokemonListPresenterDelegate {
     func didDataLoaded() {
         DispatchQueue.main.async {
-            print("reload table")
             self.tableView.reloadData()
         }
+    }
+}
+
+extension PokemonListVC: PokemonCellDelegate {
+    func didTapCell(pokemonDetail: PokemonDetail) {
+        goToDetailPage(detail: pokemonDetail)
     }
 }

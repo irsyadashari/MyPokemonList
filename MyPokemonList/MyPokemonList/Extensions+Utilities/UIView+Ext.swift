@@ -27,8 +27,3 @@ extension UIView {
         subviews.forEach { $0.removeFromSuperview() }
     }
 }
-
-extension Notification.Name {
-    static let userLoggedIn = Notification.Name("UserLoggedInNotification")
-}
-

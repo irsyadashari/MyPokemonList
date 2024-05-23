@@ -8,13 +8,17 @@
 import Foundation
 
 final class NetworkManager {
+    static let shared = NetworkManager()
+    
+    private init () {}
+    
     private struct Constants {
         static let memoryCacheByteLimit: Int = 4 * 1024 * 1024 // 20 MB
         static let diskCacheByteLimit: Int = 20 * 1024 * 1024 // 4 MB
         static let cacheName: String = "GithubBrowser.cache"
     }
     
-    static func setupURLCache() {
+    func setupURLCache() {
         guard let cacheURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first?.appendingPathComponent(Constants.cacheName) else {
             assertionFailure("Failed to setup URL Cache: Can not get cache file path.")
             return
@@ -36,7 +40,7 @@ final class NetworkManager {
         }
     }
     
-    private static func buildURL(endpoint: API) -> URLComponents {
+    private func buildURL(endpoint: API) -> URLComponents {
         var urlComponents = URLComponents()
         urlComponents.scheme = endpoint.scheme.rawValue
         urlComponents.host = endpoint.baseURL
@@ -46,7 +50,7 @@ final class NetworkManager {
         return urlComponents
     }
     
-    private static func buildRequest(url: URL?, endpoint: API) -> URLRequest? {
+    private func buildRequest(url: URL?, endpoint: API) -> URLRequest? {
         guard let urlWrapped = url else {
             return nil
         }
@@ -60,7 +64,7 @@ final class NetworkManager {
         return request
     }
     
-    static func request<T: Decodable>(endpoint: API, completion: @escaping ((Result<T, Error>) -> Void)) {
+    func request<T: Decodable>(endpoint: API, completion: @escaping ((Result<T, Error>) -> Void)) {
         let components = buildURL(endpoint: endpoint)
         
         guard let url = components.url, let request = buildRequest(url: url, endpoint: endpoint) else {

@@ -7,6 +7,10 @@
 
 import Foundation
 
+protocol PokemonListPresenterDelegate: NSObjectProtocol {
+    func didDataLoaded()
+}
+
 protocol PokemonListPresenter {
     var pokemonPage: PokemonPage? { get }
     var delegate: PokemonListPresenterDelegate? { get set }

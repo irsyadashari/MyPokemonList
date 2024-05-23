@@ -11,16 +11,52 @@ struct PokemonDetailResponse: Decodable {
     let name: String
     let sprites: PokemonImageResponse
     let abilities: [PokemonAbilitiesResponse]
+    let moves: [PokemonMovesResponse]
+    let types: [PokemonTypesResponse]
 }
 
 extension PokemonDetailResponse {
     func toDomainModel() -> PokemonDetail {
+        let abilities: String = abilities.map {
+            $0.ability.name.capitalized
+        }.joined(separator: ", ")
+        
+        let moves: String = moves.map {
+            $0.move.name.capitalized
+        }.joined(separator: ", ")
+        
+        let types: String = types.map {
+            $0.type.name.capitalized
+        }.joined(separator: ", ")
+        
         return PokemonDetail(
             name: name, 
+            pokemonNickName: nil,
             urlImages: sprites.toPokemonImageURLS(),
-            abilities: abilities.toPokemonAbilities()
+            abilities: abilities,
+            types: types,
+            moves: moves
         )
     }
+}
+
+struct PokemonTypesResponse: Decodable {
+    let slot: Int
+    let type: PokemonItemType
+}
+
+struct PokemonItemType: Decodable {
+    let name: String
+    let url: String
+}
+
+struct PokemonMovesResponse: Decodable {
+    let move: ItemMovesResponse
+}
+
+struct ItemMovesResponse: Decodable {
+    let name: String
+    let url: String
 }
 
 struct PokemonImageResponse: Decodable {
@@ -42,14 +78,6 @@ extension PokemonImageResponse {
 struct PokemonAbilitiesResponse: Decodable {
     let ability: AbilityResponse
     let slot: Int
-}
-
-extension Array where Element == PokemonAbilitiesResponse {
-    func toPokemonAbilities() -> [PokemonAbilities] {
-        return self.map { ability in
-            PokemonAbilities(abilityName: ability.ability.name, slot: ability.slot)
-        }
-    }
 }
 
 struct AbilityResponse: Decodable {

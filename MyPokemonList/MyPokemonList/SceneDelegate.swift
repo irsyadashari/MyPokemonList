@@ -19,9 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        var baseVC = PokemonListVC()
-        baseVC.presenter = PokemonListPresenterImpl()
-        window?.rootViewController = UINavigationController(rootViewController: baseVC)
+        let tabBarController = TabBarController()
+        window?.rootViewController = UINavigationController(rootViewController: tabBarController)
         window?.makeKeyAndVisible()
     }
 

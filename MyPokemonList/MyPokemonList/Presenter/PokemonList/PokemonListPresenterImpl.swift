@@ -7,13 +7,9 @@
 
 import Foundation
 
-protocol PokemonListPresenterDelegate: NSObjectProtocol {
-    func didDataLoaded()
-}
-
 final class PokemonListPresenterImpl: PokemonListPresenter {
-    var pokemonPage: PokemonPage? // move this to interactor later
-    var delegate: PokemonListPresenterDelegate?
+    var pokemonPage: PokemonPage? //TODO: Improvements: this should be in interactor
+    weak var delegate: PokemonListPresenterDelegate?
     
     func viewDidLoad() {
         loadPokemonList()
@@ -27,16 +23,14 @@ final class PokemonListPresenterImpl: PokemonListPresenter {
     
     private func loadPokemonList() {
         let endpoint = PokemonAPI.getPokemonList(())
-        NetworkManager.request(endpoint: endpoint) { [weak self] (result: Result<PokemonListResponse, Error>) in
+        NetworkManager.shared.request(endpoint: endpoint) { [weak self] (result: Result<PokemonListResponse, Error>) in
             switch result {
             case .success(let response):
                 self?.pokemonPage = response.toModel()
-//                print("pokemonList: \(self?.pokemonPage)")
                 self?.delegate?.didDataLoaded()
             case .failure(let error):
                 print("error: \(error)")
             }
         }
     }
-    
 }
