@@ -25,12 +25,15 @@ extension UIImageView {
     ) -> URLSessionDataTask? {
         DispatchQueue.main.async {
             self.image = nil
-            let key = NSString(string: urlString)
-            
-            if let cachedImage = imageCache.object(forKey: key) {
+        }
+        
+        let key = NSString(string: urlString)
+        if let cachedImage = imageCache.object(forKey: key) {
+            DispatchQueue.main.async {
                 self.image = cachedImage
             }
         }
+        
         
         guard let url = URL(string: urlString) else {
             return nil

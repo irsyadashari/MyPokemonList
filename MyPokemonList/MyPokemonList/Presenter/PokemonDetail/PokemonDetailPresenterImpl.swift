@@ -23,7 +23,7 @@ final class PokemonDetailPresenterImpl: PokemonDetailPresenter {
         interactor.isPokemonCatched(completion: completion)
     }
     
-    func didTapCatchButton(nickName: String, completion: ((Bool) -> Void)) {
+    func didPokemonSuccessfullyCaptured(nickName: String, completion: ((Bool) -> Void)) {
         interactor.saveToDB(nickName: nickName, completion: completion)
     }
 }

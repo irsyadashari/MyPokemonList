@@ -15,5 +15,5 @@ enum CatchingPokemon {
 protocol PokemonDetailPresenter {
     func getPokemonDetail() -> PokemonDetail?
     func didCatchButtonTapped(completion: ((CatchingPokemon) -> Void))
-    func didTapCatchButton(nickName: String, completion: ((Bool) -> Void))
+    func didPokemonSuccessfullyCaptured(nickName: String, completion: ((Bool) -> Void))
 }
