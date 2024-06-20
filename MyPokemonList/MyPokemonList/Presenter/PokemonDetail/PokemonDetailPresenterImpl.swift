@@ -8,12 +8,12 @@
 import Foundation
 import UIKit
 
-class PokemonDetailPresenterImpl: PokemonDetailPresenter {
+final class PokemonDetailPresenterImpl: PokemonDetailPresenter {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     var pokemonDetail: PokemonDetail?
     
-    //TODO: this logic bussiness should be on interactor
+    //TODO: this logic bussiness should be on interactor when we decide to scale the app's capability
     func didCatchButtonTapped(completion: ((CatchingPokemon) -> Void)) {
         guard let pokemonDetail else { return }
         

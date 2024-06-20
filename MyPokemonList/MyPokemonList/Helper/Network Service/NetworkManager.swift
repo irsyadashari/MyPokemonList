@@ -55,7 +55,7 @@ final class NetworkManager {
             return nil
         }
         
-        var request = URLRequest(url: urlWrapped)
+        var request = URLRequest(url: urlWrapped, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 60.0)
         request.httpMethod = endpoint.method.rawValue
         
         for item in endpoint.headers {
@@ -71,12 +71,12 @@ final class NetworkManager {
             return
         }
         
-        let session = URLSession(configuration: .default)
+        let session = URLSession.shared
         let task = session.dataTask(with: request) { data, response, error in
             if let error {
                 completion(.failure(NSError(domain: error.localizedDescription, code: 404)))
             }
-            guard response != nil, let dataWrapped = data else {
+            guard let dataWrapped = data else {
                 completion(.failure(NSError(domain: "response is nil", code: 404)))
                 return
             }
@@ -89,5 +89,13 @@ final class NetworkManager {
         }
         
         task.resume()
+    }
+    
+    private func getCachedData(for url: URL) -> Data? {
+        let request = URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: 60.0)
+        if let cachedResponse = URLCache.shared.cachedResponse(for: request) {
+            return cachedResponse.data
+        }
+        return nil
     }
 }

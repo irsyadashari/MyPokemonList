@@ -37,7 +37,7 @@ final class PokemonListVC: UIViewController {
         tableView.register(PokemonCell.self, forCellReuseIdentifier: PokemonCell.reuseIdentifier)
     }
     
-    func goToDetailPage(detail: PokemonDetail) {
+    private func goToDetailPage(detail: PokemonDetail) {
         let detailPage = PokemonDetailVC()
         let presenter = PokemonDetailPresenterImpl()
         presenter.pokemonDetail = detail

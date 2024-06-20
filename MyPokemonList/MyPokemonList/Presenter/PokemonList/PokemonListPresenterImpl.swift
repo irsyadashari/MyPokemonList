@@ -17,7 +17,6 @@ final class PokemonListPresenterImpl: PokemonListPresenter {
     
     func getPokemonItem(at index: Int) -> PokemonItem? {
         guard let page = pokemonPage else { return nil }
-        
         return page.pokemonsList[index]
     }
     

@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import CoreData
 
-class MyPokemonListPresenterImpl: MyPokemonListPresenter {
+final class MyPokemonListPresenterImpl: MyPokemonListPresenter {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var myPokemonsEntity: [PokemonDetailEntity]?
     

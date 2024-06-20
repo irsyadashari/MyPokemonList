@@ -130,6 +130,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BFDCD9F32C23C2560044EC47 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				BFF5E2EC2BFC7C41004C7414 /* Network Service */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		BFF5E2AD2BFC7AA6004C7414 = {
 			isa = PBXGroup;
 			children = (
@@ -160,10 +168,10 @@
 				BFF5E2C52BFC7AA8004C7414 /* Assets.xcassets */,
 				BFF5E2FA2BFCD20C004C7414 /* Entity */,
 				BFF5E31A2BFCD9FD004C7414 /* Extensions+Utilities */,
-				BFF5E30C2BFCD85B004C7414 /* Interactor */,
+				BFDCD9F32C23C2560044EC47 /* Helper */,
+				BFF5E2C22BFC7AA6004C7414 /* MyPokemonList.xcdatamodeld */,
 				BFF5E2F72BFCD1C0004C7414 /* Presenter */,
 				BFF5E2F62BFCD179004C7414 /* View */,
-				BFF5E2C22BFC7AA6004C7414 /* MyPokemonList.xcdatamodeld */,
 			);
 			path = MyPokemonList;
 			sourceTree = "<group>";
@@ -209,8 +217,8 @@
 		BFF5E2F62BFCD179004C7414 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				BFF5E30F2BFCD93D004C7414 /* ReusableView */,
 				BFF5E3202BFCDB2A004C7414 /* ViewControllers */,
+				BFF5E30F2BFCD93D004C7414 /* ReusableView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -230,7 +238,6 @@
 			children = (
 				BFF5E2FD2BFCD333004C7414 /* DomainModel */,
 				BFF5E2F12BFCCB10004C7414 /* Response */,
-				BFF5E2EC2BFC7C41004C7414 /* Network Service */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -242,13 +249,6 @@
 				BFF5E3002BFCD3C6004C7414 /* PokemonDetail.swift */,
 			);
 			path = DomainModel;
-			sourceTree = "<group>";
-		};
-		BFF5E30C2BFCD85B004C7414 /* Interactor */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Interactor;
 			sourceTree = "<group>";
 		};
 		BFF5E30F2BFCD93D004C7414 /* ReusableView */ = {
@@ -693,6 +693,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -720,6 +721,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

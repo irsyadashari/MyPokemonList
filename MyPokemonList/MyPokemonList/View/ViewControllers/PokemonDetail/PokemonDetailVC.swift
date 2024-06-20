@@ -99,9 +99,10 @@ final class PokemonDetailVC: UIViewController {
         }
         
         let releaseAction = UIAlertAction(title: "Release", style: .cancel, handler: nil)
-        let collectAction = UIAlertAction(title: "Collect", style: .default) { (action) in
+        let collectAction = UIAlertAction(title: "Collect", style: .default) { [weak self] (action) in
+            guard let self = self, let presenter = self.presenter else { return }
             if let textField = alertController.textFields?.first, let text = textField.text {
-                self.presenter?.saveToDB(nickName: text) { isSuccess in
+                presenter.saveToDB(nickName: text) { isSuccess in
                     if isSuccess {
                         self.navigationController?.popViewController(animated: true)
                     } else {

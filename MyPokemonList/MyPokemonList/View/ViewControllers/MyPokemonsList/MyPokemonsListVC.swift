@@ -79,7 +79,8 @@ extension MyPokemonsListVC: MyPokemonCellDelegate {
         let alertController = UIAlertController(title: "Remove Pokemon", message: "Are you sure ?", preferredStyle: .alert)
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        let submitAction = UIAlertAction(title: "Submit", style: .default) { (action) in
+        let submitAction = UIAlertAction(title: "Submit", style: .default) { [weak self] (action) in
+            guard let self = self else { return }
             self.presenter?.releasePokemon(pokemonDetail: pokemonDetail)
         }
         
@@ -95,14 +96,15 @@ extension MyPokemonsListVC: MyPokemonCellDelegate {
         
         alertController.addTextField { (textField) in
             if let pokemonNickName = pokemonDetail.pokemonNickName {
-                textField.text = pokemonDetail.pokemonNickName
+                textField.text = pokemonNickName
             } else {
                 textField.text = pokemonDetail.name
             }
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        let submitAction = UIAlertAction(title: "Submit", style: .default) { (action) in
+        let submitAction = UIAlertAction(title: "Submit", style: .default) { [weak self] (action) in
+            guard let self = self else { return }
             if let textField = alertController.textFields?.first, let newName = textField.text {
                 self.presenter?.renamePokemon(pokemonDetail: pokemonDetail, newName: newName)
             }
