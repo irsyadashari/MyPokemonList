@@ -31,8 +31,8 @@ final class PokemonDetailVC: UIViewController {
     }
     
     private func configure() {
-        guard let detail = presenter?.pokemonDetail else { return }
-        self.presenter?.pokemonDetail = detail
+        guard let detail = presenter?.getPokemonDetail() else { return }
+//        self.presenter?.pokemonDetail = detail
         
         frontImageView.loadImageFromURL(urlString: detail.urlImages.frontImage)
         backImageView.loadImageFromURL(urlString: detail.urlImages.backImage)
@@ -102,7 +102,7 @@ final class PokemonDetailVC: UIViewController {
         let collectAction = UIAlertAction(title: "Collect", style: .default) { [weak self] (action) in
             guard let self = self, let presenter = self.presenter else { return }
             if let textField = alertController.textFields?.first, let text = textField.text {
-                presenter.saveToDB(nickName: text) { isSuccess in
+                presenter.didTapCatchButton(nickName: text) { isSuccess in
                     if isSuccess {
                         self.navigationController?.popViewController(animated: true)
                     } else {

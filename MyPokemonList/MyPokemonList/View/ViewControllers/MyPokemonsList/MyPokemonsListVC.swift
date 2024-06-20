@@ -47,14 +47,15 @@ final class MyPokemonsListVC: UIViewController {
         tableView.estimatedRowHeight = UITableView.automaticDimension
         tableView.dataSource = self
         tableView.showsVerticalScrollIndicator = false
-        tableView.fillSuperView(to: view, distance: 16)
+        tableView.fillSuperView(to: view)
         tableView.register(MyPokemonCell.self, forCellReuseIdentifier: MyPokemonCell.reuseIdentifier)
     }
     
     func goToDetailPage(detail: PokemonDetail) {
         let detailPage = PokemonDetailVC()
-        let presenter = PokemonDetailPresenterImpl()
-        presenter.pokemonDetail = detail
+        let interactor = PokemonDetailInteractorImpl()
+        interactor.pokemonDetail = detail
+        let presenter = PokemonDetailPresenterImpl(interactor: interactor)
         detailPage.presenter = presenter
         detailPage.title = "Detail Page"
         navigationController?.pushViewController(detailPage, animated: true)
